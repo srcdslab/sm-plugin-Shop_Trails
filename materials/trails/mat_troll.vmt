@@ -1,0 +1,9 @@
+"UnlitGeneric"
+{
+	"$baseTexture" "sprites/trails/mat_troll"
+	
+	"$translucent" "1"
+	"$additive" 0
+	"$vertexcolor" 1
+	"$vertexalpha" 1
+}

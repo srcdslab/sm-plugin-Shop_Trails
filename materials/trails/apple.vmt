@@ -1,0 +1,5 @@
+"UnlitGeneric"
+{
+	"$basetexture" "sprites/qSay/apple"
+	"$translucent" 1
+}
