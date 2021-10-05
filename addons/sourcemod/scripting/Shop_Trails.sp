@@ -413,7 +413,14 @@ bool:SpriteTrail(client)
 
 public Action:Hook_TrailShouldHide(entity, client)
 {
-	if (toggleEffects && !ShowClientEffects(client) || !g_bShouldSee[client])
+#if defined _GlobalEffects_Included_
+	if (toggleEffects && !ShowClientEffects(client))
+	{
+		return Plugin_Handled;
+	}
+#endif
+
+	if (!g_bShouldSee[client])
 	{
 		return Plugin_Handled;
 	}
