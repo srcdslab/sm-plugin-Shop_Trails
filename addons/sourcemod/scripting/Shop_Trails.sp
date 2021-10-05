@@ -4,7 +4,6 @@
 #include <sdktools>
 #include <sdkhooks>
 #include <shop>
-#include <smartdm>
 
 #undef REQUIRE_PLUGIN
 #include <clientprefs>
@@ -26,8 +25,6 @@ new Handle:hKvTrails;
 new iTeam[MAXPLAYERS+1];
 new g_SpriteModel[MAXPLAYERS + 1] = {-1, ...};
 new ItemId:selected_id[MAXPLAYERS+1];
-
-new Handle:prchArray;
 
 public Plugin:myinfo =
 {
@@ -61,8 +58,6 @@ public OnPluginStart()
 			iTeam[i] = GetClientTeam(i);
 		}
 	}
-	
-	prchArray = CreateArray(ByteCountToCells(PLATFORM_MAX_PATH));
 	
 	RegAdminCmd("sm_trails_reload", Command_TrailsReload, ADMFLAG_ROOT, "Reloads trails config list");
 	
@@ -133,14 +128,38 @@ void SetCookieBool(int iClient, Handle hCookie, bool bValue)
 public OnMapStart()
 {
 	LoadKeyStructure();
-	
-	decl String:buffer[PLATFORM_MAX_PATH];
-	for (new i = 0; i < GetArraySize(prchArray); i++)
+	ReadDownloadsFile();
+	ReadKvFile();
+}
+
+void ReadDownloadsFile()
+{
+	char FilePath[PLATFORM_MAX_PATH];
+	BuildPath(Path_SM, FilePath, sizeof(FilePath), "configs/shop/trails_dlist.txt");
+	Handle file = OpenFile(FilePath, "r");
+	char Line[PLATFORM_MAX_PATH];
+	while(!IsEndOfFile(file) && ReadFileLine(file, Line, sizeof(Line)))
 	{
-		GetArrayString(prchArray, i, buffer, sizeof(buffer));
-		Downloader_AddFileToDownloadsTable(buffer);
-		PrecacheModel(buffer, true);
+		TrimString(Line);
+		AddFileToDownloadsTable(Line);
 	}
+	CloseHandle(file);
+}
+
+void ReadKvFile()
+{
+	char FilePath[PLATFORM_MAX_PATH], MaterialPath[PLATFORM_MAX_PATH];
+	BuildPath(Path_SM, FilePath, sizeof(FilePath), "configs/shop/trails.txt");
+	KeyValues Kv = new KeyValues("Trails");
+	Kv.ImportFromFile(FilePath);
+	Kv.GotoFirstSubKey();
+	do
+	{
+		Kv.GetString("material", MaterialPath, sizeof(MaterialPath));
+		PrecacheModel(MaterialPath);
+	}
+	while(Kv.GotoNextKey());
+	delete Kv;
 }
 
 LoadKeyStructure()
@@ -172,7 +191,6 @@ public Shop_Started()
 	KvRewind(hKvTrails);
 	if (KvGotoFirstSubKey(hKvTrails))
 	{
-		ClearArray(prchArray);
 		do
 		{
 			KvGetString(hKvTrails, "material", buffer, sizeof(buffer));
@@ -220,12 +238,6 @@ public OnItemRegistered(CategoryId:category_id, const String:category[], const S
 {
 	if (KvJumpToKey(hKvTrails, item))
 	{
-		decl String:buffer[PLATFORM_MAX_PATH];
-		KvGetString(hKvTrails, "material", buffer, sizeof(buffer));
-		Downloader_AddFileToDownloadsTable(buffer);
-		PrecacheModel(buffer, true);
-		PushArrayString(prchArray, buffer);
-		
 		KvSetNum(hKvTrails, "id", _:item_id);
 		KvRewind(hKvTrails);
 	}
