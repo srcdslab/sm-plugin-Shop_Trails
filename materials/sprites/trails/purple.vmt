@@ -1,0 +1,5 @@
+"UnlitGeneric"
+{
+	"$basetexture" "sprites/trails/purple"
+	"$translucent" 1
+}

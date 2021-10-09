@@ -3,7 +3,7 @@
 	"blue"
 	{
 		"price"		"1000"
-		"material"		"materials/trails/blue.vmt"
+		"material"		"materials/sprites/trails/blue.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -16,7 +16,7 @@
 	"cyan"
 	{
 		"price"		"1000"
-		"material"		"materials/trails/cyan.vmt"
+		"material"		"materials/sprites/trails/cyan.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -29,7 +29,7 @@
 	"green"
 	{
 		"price"		"1000"
-		"material"		"materials/trails/green.vmt"
+		"material"		"materials/sprites/trails/green.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -42,7 +42,7 @@
 	"pink"
 	{
 		"price"		"1000"
-		"material"		"materials/trails/pink.vmt"
+		"material"		"materials/sprites/trails/pink.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -55,7 +55,7 @@
 	"purple"
 	{
 		"price"		"1000"
-		"material"		"materials/trails/purple.vmt"
+		"material"		"materials/sprites/trails/purple.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -68,7 +68,7 @@
 	"red"
 	{
 		"price"		"1000"
-		"material"		"materials/trails/red.vmt"
+		"material"		"materials/sprites/trails/red.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -81,7 +81,7 @@
 	"yellow"
 	{
 		"price"		"1000"
-		"material"		"materials/trails/yellow.vmt"
+		"material"		"materials/sprites/trails/yellow.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -94,7 +94,7 @@
 	"rainbow"
 	{
 		"price"		"2000"
-		"material"		"materials/trails/rainbow.vmt"
+		"material"		"materials/sprites/trails/rainbow.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -107,7 +107,7 @@
 	"arrowrainbow"
 	{
 		"price"		"2000"
-		"material"		"materials/trails/arrowrainbow.vmt"
+		"material"		"materials/sprites/trails/arrowrainbow.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -120,7 +120,7 @@
 	"doublerainbow"
 	{
 		"price"		"2000"
-		"material"		"materials/trails/doublerainbow.vmt"
+		"material"		"materials/sprites/trails/doublerainbow.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -133,7 +133,7 @@
 	"banknote"
 	{
 		"price"		"3000"
-		"material"		"materials/trails/banknote.vmt"
+		"material"		"materials/sprites/trails/banknote.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -146,7 +146,7 @@
 	"dna2"
 	{
 		"price"		"3000"
-		"material"		"materials/trails/dna2.vmt"
+		"material"		"materials/sprites/trails/dna2.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -159,7 +159,7 @@
 	"lol"
 	{
 		"price"		"3000"
-		"material"		"materials/trails/lol.vmt"
+		"material"		"materials/sprites/trails/lol.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -172,7 +172,7 @@
 	"UA"
 	{
 		"price"		"4000"
-		"material"		"materials/trails/UA.vmt"
+		"material"		"materials/sprites/trails/UA.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -185,7 +185,7 @@
 	"flag"
 	{
 		"price"		"4000"
-		"material"		"materials/trails/flag.vmt"
+		"material"		"materials/sprites/trails/flag.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -198,7 +198,7 @@
 	"fifa"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/fifa.vmt"
+		"material"		"materials/sprites/trails/fifa.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -211,7 +211,7 @@
 	"duck"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/duck.vmt"
+		"material"		"materials/sprites/trails/duck.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -224,7 +224,7 @@
 	"apple"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/apple.vmt"
+		"material"		"materials/sprites/trails/apple.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -237,7 +237,7 @@
 	"awesome"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/awesome.vmt"
+		"material"		"materials/sprites/trails/awesome.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -250,7 +250,7 @@
 	"beermug"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/beermug.vmt"
+		"material"		"materials/sprites/trails/beermug.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -263,7 +263,7 @@
 	"cocacola"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/cocacola.vmt"
+		"material"		"materials/sprites/trails/cocacola.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -276,7 +276,7 @@
 	"poker"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/poker.vmt"
+		"material"		"materials/sprites/trails/poker.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -289,7 +289,7 @@
 	"skullnbones"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/skullnbones.vmt"
+		"material"		"materials/sprites/trails/skullnbones.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -302,7 +302,7 @@
 	"like"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/like.vmt"
+		"material"		"materials/sprites/trails/like.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -315,7 +315,7 @@
 	"biohazard"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/biohazard.vmt"
+		"material"		"materials/sprites/trails/biohazard.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -328,7 +328,7 @@
 	"mat_troll"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/mat_troll.vmt"
+		"material"		"materials/sprites/trails/mat_troll.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -341,7 +341,7 @@
 	"sharingan"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/sharingan.vmt"
+		"material"		"materials/sprites/trails/sharingan.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -354,7 +354,7 @@
 	"cssource"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/cssource.vmt"
+		"material"		"materials/sprites/trails/cssource.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -367,7 +367,7 @@
 	"csgo"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/csgo.vmt"
+		"material"		"materials/sprites/trails/csgo.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -380,7 +380,7 @@
 	"minecraft"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/minecraft.vmt"
+		"material"		"materials/sprites/trails/minecraft.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -393,7 +393,7 @@
 	"Chrome"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/Chrome.vmt"
+		"material"		"materials/sprites/trails/Chrome.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -406,7 +406,7 @@
 	"Explorer"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/Explorer.vmt"
+		"material"		"materials/sprites/trails/Explorer.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -419,7 +419,7 @@
 	"firefox15"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/firefox15.vmt"
+		"material"		"materials/sprites/trails/firefox15.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -432,7 +432,7 @@
 	"dota"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/dota.vmt"
+		"material"		"materials/sprites/trails/dota.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -445,7 +445,7 @@
 	"rak"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/rak.vmt"
+		"material"		"materials/sprites/trails/rak.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -458,7 +458,7 @@
 	"skype"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/skype.vmt"
+		"material"		"materials/sprites/trails/skype.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -471,7 +471,7 @@
 	"vk"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/vk.vmt"
+		"material"		"materials/sprites/trails/vk.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -484,7 +484,7 @@
 	"wifi"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/wifi.vmt"
+		"material"		"materials/sprites/trails/wifi.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -497,7 +497,7 @@
 	"intel"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/intel.vmt"
+		"material"		"materials/sprites/trails/intel.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -510,7 +510,7 @@
 	"youtube3"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/youtube3.vmt"
+		"material"		"materials/sprites/trails/youtube3.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -523,7 +523,7 @@
 	"BMW"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/BMW.vmt"
+		"material"		"materials/sprites/trails/BMW.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -536,7 +536,7 @@
 	"sfera"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/sfera.vmt"
+		"material"		"materials/sprites/trails/sfera.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -549,7 +549,7 @@
 	"angry"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/angry.vmt"
+		"material"		"materials/sprites/trails/angry.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -562,7 +562,7 @@
 	"ork"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/ork.vmt"
+		"material"		"materials/sprites/trails/ork.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -575,7 +575,7 @@
 	"osminog"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/osminog.vmt"
+		"material"		"materials/sprites/trails/osminog.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -588,7 +588,7 @@
 	"superman"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/superman.vmt"
+		"material"		"materials/sprites/trails/superman.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -601,7 +601,7 @@
 	"weider"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/weider.vmt"
+		"material"		"materials/sprites/trails/weider.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -614,7 +614,7 @@
 	"zoiberg"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/zoiberg.vmt"
+		"material"		"materials/sprites/trails/zoiberg.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -627,7 +627,7 @@
 	"putin"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/putin.vmt"
+		"material"		"materials/sprites/trails/putin.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -640,7 +640,7 @@
 	"avataraang"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/avataraang.vmt"
+		"material"		"materials/sprites/trails/avataraang.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -653,7 +653,7 @@
 	"griffin"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/griffin.vmt"
+		"material"		"materials/sprites/trails/griffin.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -666,7 +666,7 @@
 	"mat_predator"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/mat_predator.vmt"
+		"material"		"materials/sprites/trails/mat_predator.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -679,7 +679,7 @@
 	"mat_spongebob"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/mat_spongebob.vmt"
+		"material"		"materials/sprites/trails/mat_spongebob.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -692,7 +692,7 @@
 	"bluelightning"
 	{
 		"price"		"5000"
-		"material"		"materials/trails/bluelightning.vmt"
+		"material"		"materials/sprites/trails/bluelightning.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -705,7 +705,7 @@
 	"joker"
 	{
 		"price"		"8000"
-		"material"		"materials/trails/joker.vmt"
+		"material"		"materials/sprites/trails/joker.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -718,7 +718,7 @@
 	"naruto"
 	{
 		"price"		"8000"
-		"material"		"materials/trails/naruto.vmt"
+		"material"		"materials/sprites/trails/naruto.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"
@@ -731,7 +731,7 @@
 	"crown"
 	{
 		"price"		"15000"
-		"material"		"materials/trails/crown.vmt"
+		"material"		"materials/sprites/trails/crown.vmt"
 		"color"		"255 255 255"
 		"startwidth"		"25"
 		"endwidth"		"15"

@@ -1,9 +1,0 @@
-"UnlitGeneric"
-{
-	"$baseTexture" "powerhub/wifi"
-	
-	"$translucent" "1"
-	"$additive" 0
-	"$vertexcolor" 1
-	"$vertexalpha" 1
-}

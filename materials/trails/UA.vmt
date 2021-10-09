@@ -1,9 +1,0 @@
-"UnlitGeneric"
-{
-	"$baseTexture" "powerhub/UA"
-	
-	"$translucent" "0"
-	"$additive" 0
-	"$vertexcolor" 1
-	"$vertexalpha" 0
-}
