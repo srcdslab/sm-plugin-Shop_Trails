@@ -4,16 +4,17 @@
 #include <sourcemod>
 #include <sdktools>
 #include <sdkhooks>
+#include <clientprefs>
+
+#include <multicolors>
 #include <shop>
 
 #undef REQUIRE_PLUGIN
-#include <clientprefs>
-#include <multicolors>
 #tryinclude <zombiereloaded>
 #tryinclude <zriot>
 #tryinclude <ToggleEffects>
+#define REQUIRE_PLUGIN
 
-#define PLUGIN_VERSION	"2.2.3"
 #define CATEGORY	"trails"
 
 Handle g_hCookie;
@@ -29,12 +30,14 @@ int
  	
 ItemId selected_id[MAXPLAYERS+1];
 
+bool g_bLate = false;
+
 public Plugin myinfo =
 {
 	name = "[Shop] Trails",
 	author = "FrozDark (HLModders LLC)",
 	description = "Trails that folows a player",
-	version = PLUGIN_VERSION,
+	version = "2.2.3",
 	url = "http://www.hlmod.ru/"
 }
 
@@ -45,15 +48,19 @@ public APLRes AskPluginLoad2(Handle myself, bool late, char[] error, int err_max
 	MarkNativeAsOptional("ZRiot_IsClientHuman"); 
 	MarkNativeAsOptional("ZRiot_IsClientZombie"); 
 
+	g_bLate = late;
+
 	return APLRes_Success;
 }
 
 public void OnPluginStart()
 {
+	g_hCookie = RegClientCookie("sm_shop_trails", "1 - enabled, 0 - disabled", CookieAccess_Private);
+
 	HookEvent("player_spawn", PlayerSpawn);
 	HookEvent("player_death", PlayerDeath);
 	HookEvent("player_team", PlayerTeam);
-	
+
 	for (int i = 1; i <= MaxClients; i++)
 	{
 		if (IsClientInGame(i))
@@ -61,13 +68,13 @@ public void OnPluginStart()
 			iTeam[i] = GetClientTeam(i);
 		}
 	}
-	
+
 	RegAdminCmd("sm_trails_reload", Command_TrailsReload, ADMFLAG_ROOT, "Reloads trails config list");
-	
-	if (Shop_IsStarted())
+
+	if (g_bLate && Shop_IsStarted())
+	{
 		Shop_Started();
-	
-	g_hCookie = RegClientCookie("sm_shop_trails", "1 - enabled, 0 - disabled", CookieAccess_Private);
+	}
 }
 
 public void OnPluginEnd()
@@ -184,7 +191,7 @@ void LoadKeyStructure()
 	}
 }
 
-void Shop_Started()
+public void Shop_Started()
 {
 	LoadKeyStructure();
 	
@@ -440,12 +447,14 @@ bool SpriteTrail(int client)
 
 public Action Hook_TrailShouldHide(int entity, int client)
 {
+	if (toggleEffects 
 #if defined _GlobalEffects_Included_
-	if (toggleEffects && !ShowClientEffects(client))
+		&& !ShowClientEffects(client)
+#endif
+		)
 	{
 		return Plugin_Handled;
 	}
-#endif
 
 	if (!g_bShouldSee[client])
 	{
