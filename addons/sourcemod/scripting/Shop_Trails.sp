@@ -26,7 +26,7 @@ Handle hKvTrails;
 
 int 
 	iTeam[MAXPLAYERS+1],
- 	g_SpriteModel[MAXPLAYERS + 1] = {-1, ...};
+ 	g_SpriteModel[MAXPLAYERS + 1] = {INVALID_ENT_REFERENCE, ...};
  	
 ItemId selected_id[MAXPLAYERS+1];
 
@@ -37,7 +37,7 @@ public Plugin myinfo =
 	name = "[Shop] Trails",
 	author = "FrozDark (HLModders LLC)",
 	description = "Trails that folows a player",
-	version = "2.2.4",
+	version = "2.2.5",
 	url = "http://www.hlmod.ru/"
 }
 
@@ -297,7 +297,7 @@ public void OnMapEnd()
 {
 	for (int client = 1; client <= MAXPLAYERS; client++)
 	{
-		g_SpriteModel[client] = -1;
+		g_SpriteModel[client] = INVALID_ENT_REFERENCE;
 	}
 }
 
@@ -305,7 +305,7 @@ public void OnClientDisconnect_Post(int client)
 {
 	iTeam[client] = 0;
 	selected_id[client] = INVALID_ITEM;
-	g_SpriteModel[client] = -1;
+	g_SpriteModel[client] = INVALID_ENT_REFERENCE;
 }
 
 public void PlayerSpawn(Event event, const char[] name, bool dontBroadcast)
@@ -384,31 +384,31 @@ bool SpriteTrail(int client)
 		return false;
 	}
 	
-	g_SpriteModel[client] = CreateEntityByName("env_spritetrail");
-	if (g_SpriteModel[client] != -1) 
+	int ent = CreateEntityByName("env_spritetrail");
+	if (ent != -1) 
 	{
 		char buffer[PLATFORM_MAX_PATH]; 
 		float dest_vector[3];
 		
-		DispatchKeyValueFloat(g_SpriteModel[client], "lifetime", KvGetFloat(hKvTrails, "lifetime", 1.0));
+		DispatchKeyValueFloat(ent, "lifetime", KvGetFloat(hKvTrails, "lifetime", 1.0));
 		
 		KvGetString(hKvTrails, "startwidth", buffer, sizeof(buffer), "10");
-		DispatchKeyValue(g_SpriteModel[client], "startwidth", buffer);
+		DispatchKeyValue(ent, "startwidth", buffer);
 		
 		KvGetString(hKvTrails, "endwidth", buffer, sizeof(buffer), "6");
-		DispatchKeyValue(g_SpriteModel[client], "endwidth", buffer);
+		DispatchKeyValue(ent, "endwidth", buffer);
 		
 		KvGetString(hKvTrails, "material", buffer, sizeof(buffer));
-		DispatchKeyValue(g_SpriteModel[client], "spritename", buffer);
-		DispatchKeyValue(g_SpriteModel[client], "renderamt", "255");
+		DispatchKeyValue(ent, "spritename", buffer);
+		DispatchKeyValue(ent, "renderamt", "255");
 		
 		KvGetString(hKvTrails, "color", buffer, sizeof(buffer));
-		DispatchKeyValue(g_SpriteModel[client], "rendercolor", buffer);
+		DispatchKeyValue(ent, "rendercolor", buffer);
 		
 		IntToString(KvGetNum(hKvTrails, "rendermode", 1), buffer, sizeof(buffer));
-		DispatchKeyValue(g_SpriteModel[client], "rendermode", buffer);
+		DispatchKeyValue(ent, "rendermode", buffer);
 		
-		DispatchSpawn(g_SpriteModel[client]);
+		DispatchSpawn(ent);
 		
 		KvGetVector(hKvTrails, "position", dest_vector);
 		
@@ -428,17 +428,19 @@ bool SpriteTrail(int client)
 		or[1] += fRight[1]*dest_vector[0] + fForward[1]*dest_vector[1] + fUp[1]*dest_vector[2];
 		or[2] += fRight[2]*dest_vector[0] + fForward[2]*dest_vector[1] + fUp[2]*dest_vector[2];
 		
-		TeleportEntity(g_SpriteModel[client], or, NULL_VECTOR, NULL_VECTOR);
+		TeleportEntity(ent, or, NULL_VECTOR, NULL_VECTOR);
 		
 		SetVariantString("!activator");
-		AcceptEntityInput(g_SpriteModel[client], "SetParent", client); 
-		SetEntPropFloat(g_SpriteModel[client], Prop_Send, "m_flTextureRes", 0.05);
-		SetEntPropEnt(g_SpriteModel[client], Prop_Send, "m_hOwnerEntity", client);
+		AcceptEntityInput(ent, "SetParent", client); 
+		SetEntPropFloat(ent, Prop_Send, "m_flTextureRes", 0.05);
+		SetEntPropEnt(ent, Prop_Send, "m_hOwnerEntity", client);
 		
 		// if (hide)
 		// {
-		SDKHook(g_SpriteModel[client], SDKHook_SetTransmit, Hook_TrailShouldHide);
+		SDKHook(ent, SDKHook_SetTransmit, Hook_TrailShouldHide);
 		// }
+		
+		g_SpriteModel[client] = EntIndexToEntRef(ent);
 	}
 	KvRewind(hKvTrails);
 	
@@ -461,7 +463,7 @@ public Action Hook_TrailShouldHide(int entity, int client)
 		return Plugin_Handled;
 	}
 	
-	if (g_SpriteModel[client] == entity || iTeam[client] < 2)
+	if (EntRefToEntIndex(g_SpriteModel[client]) == entity || iTeam[client] < 2)
 	{
 		return Plugin_Continue;
 	}
@@ -475,12 +477,13 @@ public Action Hook_TrailShouldHide(int entity, int client)
 
 void KillTrail(int client)
 {
-	if (g_SpriteModel[client] > MaxClients && IsValidEdict(g_SpriteModel[client]))
+	int ent = EntRefToEntIndex(g_SpriteModel[client]);
+	if (ent != INVALID_ENT_REFERENCE)
 	{
-		AcceptEntityInput(g_SpriteModel[client], "kill");
+		AcceptEntityInput(ent, "kill");
 	}
 	
-	g_SpriteModel[client] = -1;
+	g_SpriteModel[client] = INVALID_ENT_REFERENCE;
 }
 
 stock void File_GetExtension(const char[] path, char[] buffer, int size)
