@@ -15,13 +15,14 @@
 #define REQUIRE_PLUGIN
 
 #define CATEGORY	"trails"
-#define MAX_ENTITIES GetMaxEntities()
-#define MAXEDICTS (MAX_ENTITIES - 150)
+#define MAXEDICTS (iMaxEntities - 150)
 
 Cookie g_hCookie;
 bool g_bShouldSee[MAXPLAYERS + 1];
 
 Handle hKvTrails;
+
+static int iMaxEntities;
 
 int
 	iTeam[MAXPLAYERS+1],
@@ -54,6 +55,8 @@ public APLRes AskPluginLoad2(Handle myself, bool late, char[] error, int err_max
 
 public void OnPluginStart()
 {
+	iMaxEntities = GetMaxEntities();
+
 	g_hCookie = new Cookie("sm_shop_trails", "1 - enabled, 0 - disabled", CookieAccess_Private);
 
 	HookEvent("player_spawn", PlayerSpawn);
@@ -348,7 +351,7 @@ bool SpriteTrail(int client)
 
 	if (GetEdictsCount() > MAXEDICTS)
 	{
-		CPrintToChat(client, "%T %T", "Prefix", client, "Edicts Limit", client);
+		CPrintToChat(client, "[Shop] Trails: Server reached edicts limit. Please try again later..");
 		return false;
 	}
 
@@ -490,7 +493,7 @@ bool IsValidClient(int client, bool bAllowFake = false)
 stock int GetEdictsCount()
 {
 	int iCount = 0;
-	for (int entity = 1; entity <= MAX_ENTITIES; entity++)
+	for (int entity = 1; entity <= iMaxEntities; entity++)
 	{
 		if(IsValidEdict(entity))
 			iCount++;
