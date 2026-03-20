@@ -363,7 +363,7 @@ bool SpriteTrail(int client)
 
 	if (!item[0] || !KvJumpToKey(hKvTrails, item))
 	{
-		PrintToServer("Item %s is not exists");
+		PrintToServer("Item '%s' does not exist", item);
 		return false;
 	}
 
