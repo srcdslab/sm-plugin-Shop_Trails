@@ -21,35 +21,31 @@ This repository contains a SourceMod plugin that adds trail effects to the Shop 
     └── trails_dlist.txt        # Download list for materials
 /materials/sprites/             # Trail material files
 /.github/workflows/ci.yml       # GitHub Actions CI/CD
-/sourceknight.yaml             # Build configuration
 ```
 
 ## Build System & Development Environment
 
-### Build Tool: SourceKnight
-This project uses **sourceknight** (modern SourceMod build system) with Docker:
+### Build Tool: GitHub Actions (spcomp)
+This project builds natively with `spcomp` via GitHub Actions, no Docker/SourceKnight required:
 
 ```bash
-# Install sourceknight (if not available)
-pip install sourceknight
+# Dependencies are cloned directly from their GitHub repos into
+# addons/sourcemod/scripting/include, then the plugin is compiled with:
+spcomp -i include -o ../plugins/Shop_Trails.smx Shop_Trails.sp
 
-# Build the plugin
-sourceknight build
-
-# Output location: .sourceknight/package/
+# Output location: addons/sourcemod/plugins/
 ```
 
 ### Dependencies Management
-Dependencies are automatically managed through `sourceknight.yaml`:
-- **sourcemod**: Core SourceMod framework (v1.11.0-git6917)
-- **multicolors**: Chat color library
-- **shop**: Shop-Core system (required)
-- **zombiereloaded**: Optional ZR integration  
-- **toggleeffects**: Optional special effects integration
+Dependencies are declared as git clone steps in `.github/workflows/ci.yml`:
+- **sourcemod**: Provided by the `rumblefrog/setup-sp` action (v1.12.x)
+- **multicolors**: Chat color library (srcdslab/sm-plugin-MultiColors)
+- **shop**: Shop-Core system, required (srcdslab/sm-plugin-Shop-Core)
+- **zombiereloaded**: Optional ZR integration (srcdslab/sm-plugin-zombiereloaded)
 
 ### CI/CD Pipeline
 - **Trigger**: Push, PR, manual dispatch
-- **Build**: Ubuntu 24.04 with sourceknight action
+- **Build**: Ubuntu latest, compiled with `rumblefrog/setup-sp` (SourceMod 1.12.x)
 - **Package**: Includes configs and materials
 - **Release**: Auto-release on master/main, tagged releases
 
@@ -166,7 +162,7 @@ public void OnClientDisconnect(int client) {
 ## Testing & Validation
 
 ### Manual Testing Checklist
-1. **Build Verification**: `sourceknight build` succeeds
+1. **Build Verification**: `spcomp` compiles the plugin without errors (see `.github/workflows/ci.yml`)
 2. **Plugin Loading**: No errors in SourceMod logs
 3. **Shop Integration**: Trail category appears in shop menu
 4. **Trail Effects**: Trails render correctly in-game
@@ -185,7 +181,7 @@ public void OnClientDisconnect(int client) {
 1. **Edit Source**: Modify `Shop_Trails.sp`
 2. **Update Config**: Add new trails to `trails.txt` if needed
 3. **Add Materials**: Update `trails_dlist.txt` for new materials
-4. **Build**: `sourceknight build`
+4. **Build**: Push/PR to trigger the GitHub Actions CI build (or run `spcomp` locally with the includes fetched)
 5. **Test**: Deploy to test server
 6. **Commit**: Use semantic versioning in commits
 
@@ -224,7 +220,7 @@ public void OnLibraryAdded(const char[] name) {
 ## Troubleshooting
 
 ### Common Build Issues
-- **Missing Dependencies**: Check `sourceknight.yaml` dependencies
+- **Missing Dependencies**: Check the dependency clone steps in `.github/workflows/ci.yml`
 - **Include Errors**: Verify include files are available
 - **Syntax Errors**: Use SourceMod compiler error messages
 
