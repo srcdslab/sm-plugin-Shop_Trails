@@ -20,7 +20,7 @@
 Cookie g_hCookie;
 bool g_bShouldSee[MAXPLAYERS + 1];
 
-Handle hKvTrails;
+KeyValues hKvTrails;
 
 static int iMaxEntities;
 
@@ -37,7 +37,7 @@ public Plugin myinfo =
 	name = "[Shop] Trails",
 	author = "FrozDark (HLModders LLC)",
 	description = "Trails that folows a player",
-	version = "2.3.0",
+	version = "2.3.1",
 	url = "http://www.hlmod.ru/"
 }
 
@@ -116,7 +116,7 @@ void ReadDownloadsFile()
 {
 	char FilePath[PLATFORM_MAX_PATH];
 	BuildPath(Path_SM, FilePath, sizeof(FilePath), "configs/shop/trails_dlist.txt");
-	Handle file = OpenFile(FilePath, "r");
+	File file = OpenFile(FilePath, "r");
 	if (file == null)
 	{
 		LogError("Failed to open trails_dlist.txt file. Make sure it exists in configs/shop/ folder.");
@@ -124,12 +124,12 @@ void ReadDownloadsFile()
 	}
 
 	char Line[PLATFORM_MAX_PATH];
-	while(!IsEndOfFile(file) && ReadFileLine(file, Line, sizeof(Line)))
+	while(!file.EndOfFile() && file.ReadLine(Line, sizeof(Line)))
 	{
 		TrimString(Line);
 		AddFileToDownloadsTable(Line);
 	}
-	CloseHandle(file);
+	delete file;
 }
 
 void ReadKvFile()
@@ -150,16 +150,16 @@ void ReadKvFile()
 
 void LoadKeyStructure()
 {
-	if (hKvTrails == INVALID_HANDLE)
+	if (hKvTrails == null)
 	{
-		hKvTrails = CreateKeyValues("Trails");
+		hKvTrails = new KeyValues("Trails");
 
 		char _buffer[PLATFORM_MAX_PATH];
 		Shop_GetCfgFile(_buffer, sizeof(_buffer), "trails.txt");
 
-		if (!FileToKeyValues(hKvTrails, _buffer)) SetFailState("\"%s\" not found", _buffer);
+		if (!hKvTrails.ImportFromFile(_buffer)) SetFailState("\"%s\" not found", _buffer);
 
-		KvRewind(hKvTrails);
+		hKvTrails.Rewind();
 	}
 }
 
@@ -168,41 +168,41 @@ public void Shop_Started()
 	LoadKeyStructure();
 
 	char name[64], description[64];
-	KvGetString(hKvTrails, "name", name, sizeof(name), "Trails");
-	KvGetString(hKvTrails, "description", description, sizeof(description));
+	hKvTrails.GetString("name", name, sizeof(name), "Trails");
+	hKvTrails.GetString("description", description, sizeof(description));
 
 	CategoryId category_id = Shop_RegisterCategory(CATEGORY, name, description);
 
 	char item[64], item_name[64], item_description[64], buffer[PLATFORM_MAX_PATH];
-	KvRewind(hKvTrails);
-	if (KvGotoFirstSubKey(hKvTrails))
+	hKvTrails.Rewind();
+	if (hKvTrails.GotoFirstSubKey())
 	{
 		do
 		{
-			KvGetString(hKvTrails, "material", buffer, sizeof(buffer));
+			hKvTrails.GetString("material", buffer, sizeof(buffer));
 			if (!File_ExtEqual(buffer, "vmt")) continue;
 
-			KvGetSectionName(hKvTrails, item, sizeof(item));
+			hKvTrails.GetSectionName(item, sizeof(item));
 
 			if (Shop_StartItem(category_id, item))
 			{
-				KvGetString(hKvTrails, "name", item_name, sizeof(item_name), item);
-				KvGetString(hKvTrails, "description", item_description, sizeof(item_description));
-				Shop_SetInfo(item_name, item_description, KvGetNum(hKvTrails, "price", 500), KvGetNum(hKvTrails, "sell_price", -1), Item_Togglable, KvGetNum(hKvTrails, "duration", 86400));
+				hKvTrails.GetString("name", item_name, sizeof(item_name), item);
+				hKvTrails.GetString("description", item_description, sizeof(item_description));
+				Shop_SetInfo(item_name, item_description, hKvTrails.GetNum("price", 500), hKvTrails.GetNum("sell_price", -1), Item_Togglable, hKvTrails.GetNum("duration", 86400));
 				Shop_SetCallbacks(OnItemRegistered, OnEquipItem);
 
-				if (KvJumpToKey(hKvTrails, "Attributes", false))
+				if (hKvTrails.JumpToKey("Attributes", false))
 				{
 					Shop_KvCopySubKeysCustomInfo(view_as<KeyValues>(hKvTrails));
-					KvGoBack(hKvTrails);
+					hKvTrails.GoBack();
 				}
 
 				Shop_EndItem();
 			}
 		}
-		while (KvGotoNextKey(hKvTrails));
+		while (hKvTrails.GotoNextKey());
 
-		KvRewind(hKvTrails);
+		hKvTrails.Rewind();
 	}
 
 	Shop_AddToFunctionsMenu(FuncToggleVisibilityDisplay, FuncToggleVisibility);
@@ -222,19 +222,18 @@ public bool FuncToggleVisibility(int client)
 
 public void OnItemRegistered(CategoryId category_id, const char[] category, const char[] item, ItemId item_id)
 {
-	if (KvJumpToKey(hKvTrails, item))
+	if (hKvTrails.JumpToKey(item))
 	{
-		KvSetNum(hKvTrails, "id", view_as<int>(item_id));
-		KvRewind(hKvTrails);
+		hKvTrails.SetNum("id", view_as<int>(item_id));
+		hKvTrails.Rewind();
 	}
 }
 
 public Action Command_TrailsReload(int client, int args)
 {
-	if (hKvTrails != INVALID_HANDLE)
+	if (hKvTrails != null)
 	{
-		CloseHandle(hKvTrails);
-		hKvTrails = INVALID_HANDLE;
+		delete hKvTrails;
 	}
 
 	OnPluginEnd();
@@ -292,11 +291,11 @@ public void PlayerSpawn(Event event, const char[] name, bool dontBroadcast)
 
 public void PlayerTeam(Event event, const char[] name, bool dontBroadcast)
 {
-	int client = GetClientOfUserId(GetEventInt(event, "userid"));
+	int client = GetClientOfUserId(event.GetInt("userid"));
 	if (!IsValidClient(client, true))
 		return;
 
-	iTeam[client] = GetEventInt(event, "team");
+	iTeam[client] = event.GetInt("team");
 	if (iTeam[client] != 0 && iTeam[client] != 1)
 		return;
 
@@ -305,7 +304,7 @@ public void PlayerTeam(Event event, const char[] name, bool dontBroadcast)
 
 public void PlayerDeath(Event event, const char[] name, bool dontBroadcast)
 {
-	int client = GetClientOfUserId(GetEventInt(event, "userid"));
+	int client = GetClientOfUserId(event.GetInt("userid"));
 	if (!IsValidClient(client))
 		return;
 
@@ -364,7 +363,7 @@ bool SpriteTrail(int client)
 	item[0] = '\0';
 	Shop_GetItemById(selected_id[client], item, sizeof(item));
 
-	if (!item[0] || !KvJumpToKey(hKvTrails, item))
+	if (!item[0] || !hKvTrails.JumpToKey(item))
 	{
 		PrintToServer("Item '%s' does not exist", item);
 		return false;
@@ -376,27 +375,27 @@ bool SpriteTrail(int client)
 		char buffer[PLATFORM_MAX_PATH];
 		float dest_vector[3];
 
-		DispatchKeyValueFloat(ent, "lifetime", KvGetFloat(hKvTrails, "lifetime", 1.0));
+		DispatchKeyValueFloat(ent, "lifetime", hKvTrails.GetFloat("lifetime", 1.0));
 
-		KvGetString(hKvTrails, "startwidth", buffer, sizeof(buffer), "10");
+		hKvTrails.GetString("startwidth", buffer, sizeof(buffer), "10");
 		DispatchKeyValue(ent, "startwidth", buffer);
 
-		KvGetString(hKvTrails, "endwidth", buffer, sizeof(buffer), "6");
+		hKvTrails.GetString("endwidth", buffer, sizeof(buffer), "6");
 		DispatchKeyValue(ent, "endwidth", buffer);
 
-		KvGetString(hKvTrails, "material", buffer, sizeof(buffer));
+		hKvTrails.GetString("material", buffer, sizeof(buffer));
 		DispatchKeyValue(ent, "spritename", buffer);
 		DispatchKeyValue(ent, "renderamt", "255");
 
-		KvGetString(hKvTrails, "color", buffer, sizeof(buffer));
+		hKvTrails.GetString("color", buffer, sizeof(buffer));
 		DispatchKeyValue(ent, "rendercolor", buffer);
 
-		IntToString(KvGetNum(hKvTrails, "rendermode", 1), buffer, sizeof(buffer));
+		IntToString(hKvTrails.GetNum("rendermode", 1), buffer, sizeof(buffer));
 		DispatchKeyValue(ent, "rendermode", buffer);
 
 		DispatchSpawn(ent);
 
-		KvGetVector(hKvTrails, "position", dest_vector);
+		hKvTrails.GetVector("position", dest_vector);
 
 		float
 			or[3],
@@ -425,7 +424,7 @@ bool SpriteTrail(int client)
 
 		g_SpriteModel[client] = EntIndexToEntRef(ent);
 	}
-	KvRewind(hKvTrails);
+	hKvTrails.Rewind();
 
 	return true;
 }
