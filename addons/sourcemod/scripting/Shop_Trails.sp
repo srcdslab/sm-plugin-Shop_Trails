@@ -37,7 +37,7 @@ public Plugin myinfo =
 	name = "[Shop] Trails",
 	author = "FrozDark (HLModders LLC)",
 	description = "Trails that folows a player",
-	version = "2.3.1",
+	version = "2.3.2",
 	url = "http://www.hlmod.ru/"
 }
 
@@ -55,6 +55,8 @@ public APLRes AskPluginLoad2(Handle myself, bool late, char[] error, int err_max
 
 public void OnPluginStart()
 {
+	LoadTranslations("Shop_Trails.phrases");
+
 	iMaxEntities = GetMaxEntities();
 
 	g_hCookie = new Cookie("sm_shop_trails", "1 - enabled, 0 - disabled", CookieAccess_Private);
@@ -210,13 +212,13 @@ public void Shop_Started()
 
 public void FuncToggleVisibilityDisplay(int client, char[] buffer, int maxlength)
 {
-	Format(buffer, maxlength, "Trails: %s", g_bShouldSee[client] ? "Visible" : "Hidden");
+	Format(buffer, maxlength, "%T", g_bShouldSee[client] ? "Trails Visibility Visible" : "Trails Visibility Hidden", client);
 }
 
 public bool FuncToggleVisibility(int client)
 {
 	g_bShouldSee[client] = !g_bShouldSee[client];
-	CPrintToChat(client, "{green}[Shop] {default}Shop trails is %s{default}.", g_bShouldSee[client] ? "{blue}visible":"{red}hidden");
+	CPrintToChat(client, "{green}[Shop] {default}%t", g_bShouldSee[client] ? "Trails Now Visible" : "Trails Now Hidden");
 	return false;
 }
 
@@ -239,7 +241,7 @@ public Action Command_TrailsReload(int client, int args)
 	OnPluginEnd();
 	Shop_Started();
 
-	ReplyToCommand(client, "Trails config list reloaded successfully!");
+	ReplyToCommand(client, "%t", "Trails Config Reloaded");
 
 	return Plugin_Handled;
 }
@@ -350,7 +352,7 @@ bool SpriteTrail(int client)
 
 	if (GetEdictsCount() > MAXEDICTS)
 	{
-		CPrintToChat(client, "[Shop] Trails: Server reached edicts limit. Please try again later..");
+		CPrintToChat(client, "[Shop] %t", "Trails Edicts Limit");
 		return false;
 	}
 
