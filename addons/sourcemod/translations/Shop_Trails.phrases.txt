@@ -1,0 +1,63 @@
+"Phrases"
+{
+	"Trails Visibility Visible"
+	{
+		"en"		"Trails: Visible"
+		"fr"		"Trails : visibles"
+		"ru"		"Следы: видимы"
+		"es"		"Estelas: visibles"
+		"de"		"Trails: sichtbar"
+		"pt"		"Rastros: visíveis"
+		"chi"		"拖尾：可见"
+	}
+	"Trails Visibility Hidden"
+	{
+		"en"		"Trails: Hidden"
+		"fr"		"Trails : cachés"
+		"ru"		"Следы: скрыты"
+		"es"		"Estelas: ocultas"
+		"de"		"Trails: versteckt"
+		"pt"		"Rastros: ocultos"
+		"chi"		"拖尾：隐藏"
+	}
+	"Trails Now Visible"
+	{
+		"en"		"Shop trails are {blue}visible{default}."
+		"fr"		"Les trails du shop sont {blue}visibles{default}."
+		"ru"		"Следы из магазина {blue}видимы{default}."
+		"es"		"Las estelas de la tienda están {blue}visibles{default}."
+		"de"		"Shop-Trails sind {blue}sichtbar{default}."
+		"pt"		"Os rastros da loja estão {blue}visíveis{default}."
+		"chi"		"商店拖尾已设为{blue}可见{default}。"
+	}
+	"Trails Now Hidden"
+	{
+		"en"		"Shop trails are {red}hidden{default}."
+		"fr"		"Les trails du shop sont {red}cachés{default}."
+		"ru"		"Следы из магазина {red}скрыты{default}."
+		"es"		"Las estelas de la tienda están {red}ocultas{default}."
+		"de"		"Shop-Trails sind {red}versteckt{default}."
+		"pt"		"Os rastros da loja estão {red}ocultos{default}."
+		"chi"		"商店拖尾已设为{red}隐藏{default}。"
+	}
+	"Trails Config Reloaded"
+	{
+		"en"		"Trails config list reloaded successfully!"
+		"fr"		"Liste de configuration des trails rechargée avec succès !"
+		"ru"		"Список конфигурации следов успешно перезагружен!"
+		"es"		"¡Lista de configuración de estelas recargada correctamente!"
+		"de"		"Trails-Konfigurationsliste erfolgreich neu geladen!"
+		"pt"		"Lista de configuração de rastros recarregada com sucesso!"
+		"chi"		"拖尾配置列表已成功重新加载！"
+	}
+	"Trails Edicts Limit"
+	{
+		"en"		"Trails: Server reached the edicts limit. Please try again later."
+		"fr"		"Trails : le serveur a atteint la limite d'edicts. Veuillez réessayer plus tard."
+		"ru"		"Следы: сервер достиг лимита эдиктов. Попробуйте позже."
+		"es"		"Estelas: el servidor alcanzó el límite de edicts. Inténtalo de nuevo más tarde."
+		"de"		"Trails: Der Server hat das Edict-Limit erreicht. Bitte versuche es später erneut."
+		"pt"		"Rastros: o servidor atingiu o limite de edicts. Tente novamente mais tarde."
+		"chi"		"拖尾：服务器已达到实体数量上限，请稍后再试。"
+	}
+}
