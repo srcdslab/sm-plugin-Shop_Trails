@@ -37,7 +37,7 @@ public Plugin myinfo =
 	name = "[Shop] Trails",
 	author = "FrozDark (HLModders LLC)",
 	description = "Trails that folows a player",
-	version = "2.3.2",
+	version = "2.3.3",
 	url = "http://www.hlmod.ru/"
 }
 
@@ -493,12 +493,7 @@ bool IsValidClient(int client, bool bAllowFake = false)
 
 stock int GetEdictsCount()
 {
-	int iCount = 0;
-	for (int entity = 1; entity <= iMaxEntities; entity++)
-	{
-		if(IsValidEdict(entity))
-			iCount++;
-	}
-
-	return iCount;
+	// Edicts in use, without worldspawn (edict 0) which the IsValidEdict() loop over
+	// every edict used to skip. SpriteTrail() runs on every spawn and infection.
+	return GetEntityCount() - 1;
 }
