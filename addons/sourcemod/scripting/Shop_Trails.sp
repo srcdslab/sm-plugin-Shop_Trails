@@ -37,7 +37,7 @@ public Plugin myinfo =
 	name = "[Shop] Trails",
 	author = "FrozDark (HLModders LLC)",
 	description = "Trails that folows a player",
-	version = "2.3.2",
+	version = "2.3.3",
 	url = "http://www.hlmod.ru/"
 }
 
@@ -350,14 +350,16 @@ bool SpriteTrail(int client)
 
 	KillTrail(client);
 
-	if (GetEdictsCount() > MAXEDICTS)
+	if (selected_id[client] == INVALID_ITEM || iTeam[client] <= 1 || !IsPlayerAlive(client))
 	{
-		CPrintToChat(client, "[Shop] %t", "Trails Edicts Limit");
 		return false;
 	}
 
-	if (selected_id[client] == INVALID_ITEM || iTeam[client] <= 1 || !IsPlayerAlive(client))
+	// Only count the edicts for a player who has a trail to show:
+	// SpriteTrail() runs on every spawn and infection, trail or not
+	if (GetEdictsCount() > MAXEDICTS)
 	{
+		CPrintToChat(client, "[Shop] %t", "Trails Edicts Limit");
 		return false;
 	}
 
