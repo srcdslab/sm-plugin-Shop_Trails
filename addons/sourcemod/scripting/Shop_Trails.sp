@@ -350,14 +350,16 @@ bool SpriteTrail(int client)
 
 	KillTrail(client);
 
-	if (GetEdictsCount() > MAXEDICTS)
+	if (selected_id[client] == INVALID_ITEM || iTeam[client] <= 1 || !IsPlayerAlive(client))
 	{
-		CPrintToChat(client, "[Shop] %t", "Trails Edicts Limit");
 		return false;
 	}
 
-	if (selected_id[client] == INVALID_ITEM || iTeam[client] <= 1 || !IsPlayerAlive(client))
+	// Only count the edicts for a player who has a trail to show:
+	// SpriteTrail() runs on every spawn and infection, trail or not
+	if (GetEdictsCount() > MAXEDICTS)
 	{
+		CPrintToChat(client, "[Shop] %t", "Trails Edicts Limit");
 		return false;
 	}
 
@@ -493,7 +495,12 @@ bool IsValidClient(int client, bool bAllowFake = false)
 
 stock int GetEdictsCount()
 {
-	// Edicts in use, without worldspawn (edict 0) which the IsValidEdict() loop over
-	// every edict used to skip. SpriteTrail() runs on every spawn and infection.
-	return GetEntityCount() - 1;
+	int iCount = 0;
+	for (int entity = 1; entity <= iMaxEntities; entity++)
+	{
+		if(IsValidEdict(entity))
+			iCount++;
+	}
+
+	return iCount;
 }
