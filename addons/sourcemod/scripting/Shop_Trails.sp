@@ -37,7 +37,7 @@ public Plugin myinfo =
 	name = "[Shop] Trails",
 	author = "FrozDark (HLModders LLC)",
 	description = "Trails that folows a player",
-	version = "2.3.3",
+	version = "2.3.4",
 	url = "http://www.hlmod.ru/"
 }
 
