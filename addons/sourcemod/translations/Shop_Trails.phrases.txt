@@ -9,6 +9,12 @@
 		"de"		"Trails: sichtbar"
 		"pt"		"Rastros: visíveis"
 		"chi"		"拖尾：可见"
+		"pl"		"Smugi: widoczne"
+		"tr"		"Izler: görünür"
+		"it"		"Scie: visibili"
+		"ua"		"Сліди: видимі"
+		"zho"		"軌跡：可見"
+		"cze"		"Stopy: viditelné"
 	}
 	"Trails Visibility Hidden"
 	{
@@ -19,6 +25,12 @@
 		"de"		"Trails: versteckt"
 		"pt"		"Rastros: ocultos"
 		"chi"		"拖尾：隐藏"
+		"pl"		"Smugi: ukryte"
+		"tr"		"Izler: gizli"
+		"it"		"Scie: nascoste"
+		"ua"		"Сліди: приховані"
+		"zho"		"軌跡：隱藏"
+		"cze"		"Stopy: skryté"
 	}
 	"Trails Now Visible"
 	{
@@ -29,6 +41,12 @@
 		"de"		"Shop-Trails sind {blue}sichtbar{default}."
 		"pt"		"Os rastros da loja estão {blue}visíveis{default}."
 		"chi"		"商店拖尾已设为{blue}可见{default}。"
+		"pl"		"Smugi ze sklepu są teraz {blue}widoczne{default}."
+		"tr"		"Mağaza izleri artık {blue}görünür{default}."
+		"it"		"Le scie dello shop sono ora {blue}visibili{default}."
+		"ua"		"Сліди з магазину тепер {blue}видимі{default}."
+		"zho"		"商店軌跡現在已{blue}顯示{default}。"
+		"cze"		"Stopy z obchodu jsou nyní {blue}viditelné{default}."
 	}
 	"Trails Now Hidden"
 	{
@@ -39,6 +57,12 @@
 		"de"		"Shop-Trails sind {red}versteckt{default}."
 		"pt"		"Os rastros da loja estão {red}ocultos{default}."
 		"chi"		"商店拖尾已设为{red}隐藏{default}。"
+		"pl"		"Smugi ze sklepu są teraz {red}ukryte{default}."
+		"tr"		"Mağaza izleri artık {red}gizli{default}."
+		"it"		"Le scie dello shop sono ora {red}nascoste{default}."
+		"ua"		"Сліди з магазину тепер {red}приховані{default}."
+		"zho"		"商店軌跡現在已{red}隱藏{default}。"
+		"cze"		"Stopy z obchodu jsou nyní {red}skryté{default}."
 	}
 	"Trails Config Reloaded"
 	{
@@ -49,6 +73,12 @@
 		"de"		"Trails-Konfigurationsliste erfolgreich neu geladen!"
 		"pt"		"Lista de configuração de rastros recarregada com sucesso!"
 		"chi"		"拖尾配置列表已成功重新加载！"
+		"pl"		"Lista konfiguracji smug została pomyślnie przeładowana!"
+		"tr"		"İz yapılandırma listesi başarıyla yeniden yüklendi!"
+		"it"		"Elenco di configurazione delle scie ricaricato con successo!"
+		"ua"		"Список конфігурації слідів успішно перезавантажено!"
+		"zho"		"軌跡設定清單已成功重新載入！"
+		"cze"		"Seznam konfigurace stop byl úspěšně znovu načten!"
 	}
 	"Trails Edicts Limit"
 	{
@@ -59,5 +89,11 @@
 		"de"		"Trails: Der Server hat das Edict-Limit erreicht. Bitte versuche es später erneut."
 		"pt"		"Rastros: o servidor atingiu o limite de edicts. Tente novamente mais tarde."
 		"chi"		"拖尾：服务器已达到实体数量上限，请稍后再试。"
+		"pl"		"Smugi: serwer osiągnął limit edictów. Spróbuj ponownie później."
+		"tr"		"İzler: sunucu edict sınırına ulaştı. Lütfen daha sonra tekrar deneyin."
+		"it"		"Scie: il server ha raggiunto il limite di edict. Riprova più tardi."
+		"ua"		"Сліди: сервер досяг ліміту едиктів. Спробуйте пізніше."
+		"zho"		"軌跡：伺服器已達到 edict 上限，請稍後再試。"
+		"cze"		"Stopy: server dosáhl limitu edictů. Zkuste to prosím později."
 	}
 }
